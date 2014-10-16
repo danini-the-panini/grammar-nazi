@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
 
-  "name": "Confuckulator",
-  "description": "This extension confuses the crap out of people.",
+  "name": "Grammar Nazi",
+  "description": "Screws with the grammar in every page you visit.",
   "version": "1.0",
 
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["jquery.js", "confuckulator.js"]
+      "js": ["jquery.js", "grammar-nazi.js"]
     }
   ]
 }
