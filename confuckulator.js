@@ -52,6 +52,4 @@ $(function() {
       this.textContent = hanoiSwap(pairs[i][0], pairs[i][1], this.textContent);
     }
   });
-
-  alert("You've been confuckulated!");
 });
