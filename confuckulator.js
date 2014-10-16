@@ -15,6 +15,12 @@ function swap(a, b, text) {
     .replace(comma, " " + b + ",");
 }
 
+function hanoiSwap(a, b, text) {
+  text = swap(a, "confuckulator", text);
+  text = swap(b, a, text);
+  return swap("confuckulator", b, text);
+}
+
 var pairs = [
   ["your","you're"],
   ["their","they're"],
@@ -24,7 +30,6 @@ var pairs = [
   ["build","built"],
   ["accept","except"],
   ["is","are"],
-  ["am","are"],
   ["right","write"],
   ["has","have"],
   ["an","a"],
@@ -35,7 +40,8 @@ var pairs = [
   ["thought","fought"],
   ["would","wood"],
   ["spend","spent"],
-  ["too","to"]
+  ["too","to"],
+  ["seen","scene"]
 ]
 
 $(function() {
@@ -43,7 +49,7 @@ $(function() {
     return this.nodeType == 3;
   }).each(function() {
     for (var i = 0; i < pairs.length; i++) {
-      this.textContent = swap(pairs[i][0], pairs[i][1], this.textContent);
+      this.textContent = hanoiSwap(pairs[i][0], pairs[i][1], this.textContent);
     }
   });
 
