@@ -48,21 +48,34 @@ var oneWayPairs = [
   ["am","are"]
 ]
 
-function selectContents(word) {
-  return $(":contains(" + word + ")")
-};
+function containsSelector(word) {
+  var string = ":contains(" + word + "), :contains(" + capitaliseFirstLetter(word) + ")";
+  if (word.indexOf("'") > -1) {
+    var word2 = word.replace("'","’");
+    string += ", :contains(" + word2 + "), :contains(" + capitaliseFirstLetter(word2) + ")";
+  }
+  return string;
+}
+
+function containsPairSelector(a,b) {
+  return containsSelector(a) + ", " + containsSelector(b);
+}
 
 $(function() {
-  for (var i = 0; i < pairs.length; i++) {
-    x = selectContents(pairs[i][0]).contents().filter(function() {
-      return this.nodeType == 3;
-    }).each(function() {
-      for (var i = 0; i < pairs.length; i++) {
-        this.textContent = hanoiSwap(pairs[i][0], pairs[i][1], this.textContent);
-      }
-      for (i = 0; i < oneWayPairs.length; i++) {
-        this.textContent = swap(oneWayPairs[i][0], oneWayPairs[i][1], this.textContent);
-      }
-    });
-  };
+  var selector = pairs.map(function(pair) {
+    return containsPairSelector(pair[0], pair[1]);
+  }) + oneWayPairs.map(function(pair) {
+    return containsSelector(pair[0]);
+  }).join(", ");
+
+  $(selector).contents().filter(function() {
+    return this.nodeType == 3;
+  }).each(function() {
+    for (var i = 0; i < pairs.length; i++) {
+      this.textContent = hanoiSwap(pairs[i][0], pairs[i][1], this.textContent);
+    }
+    for (i = 0; i < oneWayPairs.length; i++) {
+      this.textContent = swap(oneWayPairs[i][0], oneWayPairs[i][1], this.textContent);
+    }
+  });
 });
