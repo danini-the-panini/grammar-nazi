@@ -30,18 +30,13 @@ var pairs = [
   ["build","built"],
   ["accept","except"],
   ["is","are"],
-  ["right","write"],
   ["has","have"],
   ["an","a"],
   ["no","know"],
-  ["we've","weave"],
-  ["by","buy"],
   ["than","then"],
   ["thought","fought"],
-  ["would","wood"],
   ["spend","spent"],
-  ["too","to"],
-  ["seen","scene"]
+  ["too","to"]
 ]
 
 var oneWayPairs = [
