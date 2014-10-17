@@ -44,12 +44,19 @@ var pairs = [
   ["seen","scene"]
 ]
 
+var oneWayPairs = [
+  ["am","are"]
+]
+
 $(function() {
   x = $('*').contents().filter(function() {
     return this.nodeType == 3;
   }).each(function() {
     for (var i = 0; i < pairs.length; i++) {
       this.textContent = hanoiSwap(pairs[i][0], pairs[i][1], this.textContent);
+    }
+    for (i = 0; i < oneWayPairs.length; i++) {
+      this.textContent = swap(oneWayPairs[i][0], oneWayPairs[i][1], this.textContent);
     }
   });
 });
